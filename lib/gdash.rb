@@ -6,6 +6,7 @@ require 'redcarpet'
 
 class GDash
   require 'gdash/dashboard'
+  require 'gdash/node'
   require 'gdash/monkey_patches'
   require 'gdash/sinatra_app'
   require 'graphite_graph'
@@ -14,7 +15,7 @@ class GDash
 
   def self.categories(dash_templates)
     Dir.entries(dash_templates).select do |dir|
-      dir if File.directory?(File.join(dash_templates, dir)) && !dir.match(/^\./)
+      dir if File.directory?(File.join(dash_templates, dir)) && !dir.match(/^\.|node_templates/)
     end.sort
   end
 
